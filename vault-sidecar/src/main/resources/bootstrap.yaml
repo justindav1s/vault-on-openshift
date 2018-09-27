@@ -1,0 +1,10 @@
+spring.application.name: spring-native-example
+spring.cloud.vault:
+    host: ${vault.host:vault-vault-controller.apps.ocp.datr.eu}
+    port: ${vault.port:443}
+    scheme: https
+    authentication: TOKEN
+    token: 57e71167-637d-3f57-a6c6-50e5ebf5326b
+    config:
+        order: 10
+logging.level.org.springframework: debug
