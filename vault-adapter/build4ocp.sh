@@ -11,7 +11,7 @@ while [ $? \> 0 ]; do
 done
 
 oc new-build \
-    registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift~https://github.com/justindav1s/vault-sidecar \
+    registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift~https://github.com/justindav1s/kube-vault-adapter \
     --context-dir=vault-adapter \
     --name $PROJECT
 

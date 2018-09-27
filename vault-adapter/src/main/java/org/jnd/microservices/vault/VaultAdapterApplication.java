@@ -1,4 +1,4 @@
-package org.jnd.microservices.vaultdemo;
+package org.jnd.microservices.vault;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,12 +17,12 @@ import java.util.Properties;
 
 @SpringBootApplication
 @RestController
-public class VaultDemoApplication {
+public class VaultAdapterApplication {
 
-	private Log log = LogFactory.getLog(VaultDemoApplication.class);
+	private Log log = LogFactory.getLog(VaultAdapterApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(VaultDemoApplication.class, args);
+		SpringApplication.run(VaultAdapterApplication.class, args);
 	}
 
 	@Value("${password}")
