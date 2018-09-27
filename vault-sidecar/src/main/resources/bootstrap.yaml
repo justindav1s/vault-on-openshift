@@ -8,4 +8,3 @@ spring.cloud.vault:
     config:
         order: 10
 logging.level.org.springframework: debug
-password: test
