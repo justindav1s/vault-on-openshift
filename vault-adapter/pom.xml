@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.jnd.microservices</groupId>
-	<artifactId>vault-demo</artifactId>
+	<artifactId>vault-adapter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>vault-demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>vault-adapter</name>
+	<description>A vault adapter for use by legacy apps that are not vault aware but can see the file system</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
