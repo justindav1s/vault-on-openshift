@@ -10,8 +10,6 @@ while [ $? \> 0 ]; do
     oc new-project $PROJECT 2> /dev/null
 done
 
-oc new-project $PROJECT
-
 oc new-build \
     registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift~https://github.com/justindav1s/vault-sidecar \
     --context-dir=vault-sidecar \
