@@ -7,4 +7,4 @@ spring.cloud.vault:
     token: 7e207cda-0dbe-b21d-2bcf-08187f534099
     config:
         order: 10
-logging.level.org.springframework: debug
+logging.level.org.springframework: info
