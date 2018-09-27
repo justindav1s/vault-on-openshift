@@ -42,9 +42,9 @@ spec:
           imagePullPolicy: Always
           env:
           - name: "VAULT_HOST"
-            value: "vault.vault-controller.svc"
+            value: "vault-vault-controller.apps.ocp.datr.eu"
           - name: "VAULT_PORT"
-            value: "8200"           
+            value: "443"
           livenessProbe:
             httpGet:
               path: /health
