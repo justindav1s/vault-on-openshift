@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Properties;
 
 @SpringBootApplication
 @RestController
@@ -27,6 +31,14 @@ public class VaultDemoApplication {
 	@PostConstruct
 	private void postConstruct() {
 		log.info("*****************My password is: " + password);
+
+		Properties myProps = new Properties();
+		myProps.putIfAbsent("password", password);
+		try {
+			myProps.store(new FileWriter(new File("/tmp/app.properties")), null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
