@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VAULT_TOKEN=57e71167-637d-3f57-a6c6-50e5ebf5326b
+VAULT_TOKEN=7e207cda-0dbe-b21d-2bcf-08187f534099
 
 curl \
     --header "X-Vault-Token: $VAULT_TOKEN" \
