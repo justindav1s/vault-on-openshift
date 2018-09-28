@@ -3,7 +3,7 @@
 PROJECT=spring-vault-demo
 
 oc new-app -f spring-vault-direct-template.yaml \
-    -p APP_NAME=test1-direct-vault \
+    -p APP_NAME=test1-direct-vault-demo \
     -p VAULT_USERROLE=test1 \
     -p IMAGE_NAME=spring-vault-direct \
     -p VAULT_HOST=vault-vault-controller.apps.ocp.datr.eu \
