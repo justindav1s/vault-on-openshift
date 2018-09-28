@@ -1,11 +1,11 @@
-spring.application.name: ${APP_NAME}
+spring.application.name: ${VAULT_USERROLE}
 spring.cloud.vault:
     host: ${VAULT_HOST}
     port: ${VAULT_PORT}
     scheme: https
     authentication: KUBERNETES
     kubernetes:
-        role: ${APP_NAME}
+        role: ${VAULT_USERROLE}
         service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
     config:
         order: 10
