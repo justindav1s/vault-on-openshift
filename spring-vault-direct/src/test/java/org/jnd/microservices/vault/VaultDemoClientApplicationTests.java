@@ -1,4 +1,4 @@
-package org.jnd.microservices.vaultdemo;
+package org.jnd.microservices.vault;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class VaultDemoApplicationTests {
+public class VaultDemoClientApplicationTests {
 
 	@Test
 	public void contextLoads() {

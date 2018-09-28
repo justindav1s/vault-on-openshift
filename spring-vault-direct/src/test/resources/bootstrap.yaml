@@ -1,0 +1,8 @@
+spring.application.name: test
+spring.cloud.vault:
+    host: localhost
+    port: 8200
+    scheme: https
+    authentication: TOKEN
+    token: …
+logging.level.org.springframework: info

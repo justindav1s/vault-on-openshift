@@ -17,12 +17,12 @@ import java.util.Properties;
 
 @SpringBootApplication
 @RestController
-public class VaultAdapterApplication {
+public class VaultDemoClientApplication {
 
-	private Log log = LogFactory.getLog(VaultAdapterApplication.class);
+	private Log log = LogFactory.getLog(VaultDemoClientApplication.class);
 
 	public static void main(String[] args) {
-		SpringApplication.run(VaultAdapterApplication.class, args);
+		SpringApplication.run(VaultDemoClientApplication.class, args);
 	}
 
 	@Value("${password}")
@@ -42,12 +42,12 @@ public class VaultAdapterApplication {
 	}
 
 	@RequestMapping(value = "/health", method = RequestMethod.GET)
-	public String ping() {
+	public String health() {
 		return "OK";
 	}
 
 	@RequestMapping(value = "/secret", method = RequestMethod.GET)
-	public String ping() {
+	public String getSecret() {
 		return password;
 	}
 }
