@@ -51,6 +51,8 @@ objects:
               value: ${VAULT_PORT}
           - name: "APP_NAME"
             value: ${APP_NAME}
+          - name: "VAULT_USERROLE"
+            value: ${VAULT_USERROLE}
           volumeMounts:
           - name: secret-volume
             mountPath: /tmp
@@ -61,6 +63,8 @@ objects:
             env:
             - name: "APP_NAME"
               value: ${APP_NAME}
+            - name: "VAULT_USERROLE"
+              value: ${VAULT_USERROLE}
             livenessProbe:
               httpGet:
                 path: /health
@@ -83,6 +87,10 @@ objects:
 parameters:
 - description: Application Name
   name: APP_NAME
+  required: true
+  value: "test1-app"
+- description: Vault User and Role
+  name: VAULT_USERROLE
   required: true
   value: "test1"
 - description: Image Name

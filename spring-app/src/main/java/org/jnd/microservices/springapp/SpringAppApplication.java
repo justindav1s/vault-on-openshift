@@ -27,7 +27,7 @@ public class SpringAppApplication {
 
 	String password;
 
-	@Value("${APP_NAME}")
+	@Value("${VAULT_USERROLE}")
 	String application;
 
 	@PostConstruct
