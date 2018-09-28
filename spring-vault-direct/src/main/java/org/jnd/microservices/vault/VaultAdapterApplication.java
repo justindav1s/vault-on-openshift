@@ -45,4 +45,9 @@ public class VaultAdapterApplication {
 	public String ping() {
 		return "OK";
 	}
+
+	@RequestMapping(value = "/secret", method = RequestMethod.GET)
+	public String ping() {
+		return password;
+	}
 }
