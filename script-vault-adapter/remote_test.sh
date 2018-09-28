@@ -7,7 +7,7 @@ PROJECT=$4
 APPNAME=$5
 VAULT_ROLE=$6
 
-./oc login https://ocp.datr.eu:8443 --username=justin --password=S@far123 --insecure-skip-tls-verify=true
+./oc login ${OCP_URL} --username=${OCP_USER} --password=${OCP_PWD} --insecure-skip-tls-verify=true
 
 VAULT_ADDR=https://`./oc get route -n vault-controller | grep -m1 vault | awk '{print $2}'`
 echo VAULT_ADDR = $VAULT_ADDR

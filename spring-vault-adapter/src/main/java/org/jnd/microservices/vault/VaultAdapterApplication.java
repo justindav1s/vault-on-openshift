@@ -45,24 +45,6 @@ public class VaultAdapterApplication implements CommandLineRunner {
 	@Override
 	public void run(String[] args) throws Exception {
 
-		log.info("************* Environment : "+env.toString());
-		log.info("************* Sources : "+((AbstractEnvironment) env).getPropertySources());
-		MutablePropertySources mps = ((AbstractEnvironment) env).getPropertySources();
-		log.info("************* Contains vault : "+mps.contains("bootstrapProperties"));
-		CompositePropertySource cps = (CompositePropertySource) mps.get("bootstrapProperties");
-		log.info("************* Source : "+cps.toString());
-		List<?> sources = Collections.singletonList(cps.getPropertySources());
-		log.info("************* Sources : "+sources);
-
-		Map<String, Object> map = new HashMap();
-		for(Iterator it = ((AbstractEnvironment) env).getPropertySources().iterator(); it.hasNext(); ) {
-			PropertySource propertySource = (PropertySource) it.next();
-			if (propertySource instanceof MapPropertySource) {
-				map.putAll(((MapPropertySource) propertySource).getSource());
-			}
-		}
-		log.info("************* Map : "+map);
-
 		Properties myProps = new Properties();
 		myProps.putIfAbsent("password", password);
 		try {
