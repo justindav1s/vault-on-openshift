@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @SpringBootApplication
+@RestController
 public class SpringAppApplication {
 
 	private Log log = LogFactory.getLog(SpringAppApplication.class);
