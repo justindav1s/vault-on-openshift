@@ -12,6 +12,6 @@ done
 
 oc new-build \
     registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift~https://github.com/justindav1s/kube-vault-adapter \
-    --context-dir=spring-vault-direct \
-    --name spring-vault-direct
+    --context-dir=spring-app-vault-direct \
+    --name spring-app-vault-direct
 
