@@ -3,4 +3,10 @@
 PROJECT=spring-vault-demo
 oc project $PROJECT
 
-cat Dockerfile | oc new-build --name script-vault-adapter -D -
+oc delete bc,is script-vault-adapter
+
+oc new-build \
+    https://github.com/justindav1s/kube-vault-adapter \
+    --name script-vault-adapter \
+    --context-dir=script-vault-adapter \
+    --strategy=docker

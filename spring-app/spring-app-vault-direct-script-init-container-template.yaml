@@ -1,0 +1,119 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: spring-app-vault-direct-init-container-template
+objects:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app: ${APP_NAME}
+    name: ${APP_NAME}
+  spec:
+    ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: ${APP_NAME}
+
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    name: ${APP_NAME}
+  spec:
+    triggers:
+      -
+        type: ConfigChange
+      -
+        type: ImageChange
+        imageChangeParams:
+          automatic: true
+          containerNames:
+            - ${APP_NAME}
+          from:
+            kind: ImageStreamTag
+            name: ${IMAGE_NAME}:latest
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: ${APP_NAME}
+      spec:
+        initContainers:
+        - name: spring-vault-adapter
+          image: docker-registry.default.svc:5000/spring-vault-demo/spring-vault-adapter
+          env:
+          - name: "VAULT_HOST"
+            value: ${VAULT_HOST}
+          - name: "VAULT_PORT"
+            value: ${VAULT_PORT}
+          - name: "APP_NAME"
+            value: ${APP_NAME}
+          - name: "VAULT_USERROLE"
+            value: ${VAULT_USERROLE}
+          volumeMounts:
+          - name: secret-volume
+            mountPath: /tmp
+        - name: script-vault-adapter
+          image: docker-registry.default.svc:5000/spring-vault-demo/script-vault-adapter
+          env:
+          command: ['/bin/bash']
+          args: ['-c', "./getsecrets.sh https://${VAULT_HOST}:${VAULT_PORT} ${VAULT_USERROLE}"]
+          volumeMounts:
+          - name: secret-volume
+            mountPath: /tmp
+        containers:
+          - name: ${APP_NAME}
+            image: ${IMAGE_NAME}:latest
+            imagePullPolicy: Always
+            lifecycle:
+              postStart:
+                exec:
+                  command: ["/bin/sh", "-c", "sleep 30; rm -rf /tmp/${VAULT_USERROLE}.properties"]
+            env:
+            - name: "APP_NAME"
+              value: ${APP_NAME}
+            - name: "VAULT_USERROLE"
+              value: ${VAULT_USERROLE}
+            livenessProbe:
+              httpGet:
+                path: /health
+                port: 8080
+              initialDelaySeconds: 20
+              periodSeconds: 3
+            readinessProbe:
+              httpGet:
+                path: /health
+                port: 8080
+              initialDelaySeconds: 20
+              periodSeconds: 3
+            volumeMounts:
+            - name: secret-volume
+              mountPath: /tmp
+        volumes:
+        - name: secret-volume
+          emptyDir: {}
+
+parameters:
+- description: Application Name
+  name: APP_NAME
+  required: true
+  value: "test1-app"
+- description: Vault User and Role
+  name: VAULT_USERROLE
+  required: true
+  value: "test1"
+- description: Image Name
+  name: IMAGE_NAME
+  required: true
+  value: "spring-app"
+- description: Vault Host
+  name: VAULT_HOST
+  required: true
+  value: "vault-vault-controller.apps.ocp.datr.eu"
+- description: Vault Port
+  name: VAULT_PORT
+  required: true
+  value: "443"

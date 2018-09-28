@@ -29,6 +29,6 @@ curl \
     --request GET \
     $VAULT_ADDR/v1/secret/${VAULT_ROLE} > /tmp/$VAULT_ROLE.properties
 
-cat /tmp/$VAULT_ROLE.properties
+cat /tmp/$VAULT_ROLE.json
 
 rm -rf tokendata.json payload.json
