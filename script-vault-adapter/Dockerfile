@@ -5,7 +5,8 @@ RUN yum -y update && yum -y install epel-release && yum -y install jq wget curl
 RUN groupadd vault && \
     adduser -g vault vault && \
     mkdir /vault && \
-    chown -R vault:vault /vault
+    chown -R vault:vault /vault \
+    chmod -R 777 /vault
 
 
 WORKDIR /vault
