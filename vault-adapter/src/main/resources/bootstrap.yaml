@@ -5,7 +5,7 @@ spring.cloud.vault:
     scheme: https
     authentication: KUBERNETES
     kubernetes:
-        role: spring-native-example
+        role: test1
         service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
     config:
         order: 10

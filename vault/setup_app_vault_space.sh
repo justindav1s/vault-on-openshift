@@ -2,12 +2,17 @@
 
 set -x
 
+PROJECT=vault-controller
+oc project $PROJECT
+
 export APPNAME=test1
 
 export VAULT_ADDR=https://`oc get route -n vault-controller | grep -m1 vault | awk '{print $2}'`
 
-reviewer_service_account_jwt=$(oc serviceaccounts get-token vault-auth)
+export ROOT_TOKEN=`cat root_token.txt| head -1`
+export VAULT_TOKEN=$ROOT_TOKEN
 
+reviewer_service_account_jwt=$(oc serviceaccounts get-token vault-auth)
 
 cat <<EOF > vault-policy.hcl
 path "secret/${APPNAME}" {
@@ -30,5 +35,13 @@ vault write \
 vault write -tls-skip-verify secret/${APPNAME} password=pwd_from_vault
 
 default_account_token=$(oc serviceaccounts get-token default -n default)
-vault write -tls-skip-verify auth/kubernetes/login role=${APPNAME} jwt=${default_account_token}
 
+vault write -tls-skip-verify auth/kubernetes/login role=${APPNAME} jwt=${default_account_token} > app_token_response.txt
+
+export APP_TOKEN=`cat app_token_response.txt | grep '^token ' | awk '{print $2}'`
+
+echo $APP_TOKEN > app_token.txt
+
+echo APP_TOKEN=$APP_TOKEN
+
+rm -rf app_token_response.txt vault-policy.hcl

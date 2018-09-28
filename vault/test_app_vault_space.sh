@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
-APP-NAME=my-app
+APPNAME=test1
+VAULT_ADDR=https://`oc get route -n vault-controller | grep -m1 vault | awk '{print $2}'`
+APP_TOKEN=`cat app_token.txt| head -1`
+VAULT_TOKEN=$APP_TOKEN
 
-VAULT_TOKEN=$1
+vault login $APP_TOKEN
 
 curl \
     --header "X-Vault-Token: $VAULT_TOKEN" \
     --request GET \
-    https://vault-vault-controller.apps.ocp.datr.eu/v1/secret/${APP-NAME}
+    https://vault-vault-controller.apps.ocp.datr.eu/v1/secret/${APPNAME}
 
 curl \
     --header "X-Vault-Token: $VAULT_TOKEN" \

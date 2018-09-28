@@ -1,3 +1,1 @@
-Unseal Key 1: kigAbQUZi4tk6M3KgnwvaEXCzYURZaryCoXi+nU10b0=ubnu00000000052325
-
-Initial Root Token: e1d01ddd-569d-2bc0-621b-b83442e94cff
+3wLRuMJQgy1rYTNpuZyfMil4ULUXzBj4whUWVXWxVk8=
