@@ -43,7 +43,7 @@ objects:
       spec:
         initContainers:
         - name: spring-vault-adapter
-          image: spring-vault-adapter:latest
+          image: spring-vault-demo/spring-vault-adapter:latest
           env:
           - name: "VAULT_HOST"
             value: ${VAULT_HOST}
@@ -80,9 +80,9 @@ objects:
             volumeMounts:
             - name: secret-volume
               mountPath: /tmp
-         volumes:
-         - name: secret-volume
-           emptyDir: {}
+        volumes:
+        - name: secret-volume
+          emptyDir: {}
 
 parameters:
 - description: Application Name
