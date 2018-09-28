@@ -1,0 +1,14 @@
+Key                                       Value
+---                                       -----
+token                                     0e48a9d5-5d28-9b0c-9a08-2638b9f8534d
+token_accessor                            102a0d70-9961-ee55-a1b4-d20c48ac30f1
+token_duration                            2h
+token_renewable                           true
+token_policies                            ["default" "test1"]
+identity_policies                         []
+policies                                  ["default" "test1"]
+token_meta_role                           test1
+token_meta_service_account_name           default
+token_meta_service_account_namespace      default
+token_meta_service_account_secret_name    default-token-z2g8z
+token_meta_service_account_uid            049cd588-a240-11e8-b4ff-fa163ea7e51b

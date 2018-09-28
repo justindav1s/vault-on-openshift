@@ -1,0 +1,12 @@
+spring.application.name: test1
+spring.cloud.vault:
+    host: ${vault.host:vault-vault-controller.apps.ocp.datr.eu}
+    port: ${vault.port:443}
+    scheme: https
+    authentication: KUBERNETES
+    kubernetes:
+        role: test1
+        service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
+    config:
+        order: 10
+logging.level.org.springframework: info

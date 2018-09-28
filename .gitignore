@@ -24,9 +24,9 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-/vault/init.txt
-/vault/vault-policy.hcl
-/vault/root_token.txt
-/vault/keys.txt
-/vault/app_token_response.txt
-/vault/app_token.txt
+/vault_setup/init.txt
+/vault_setup/vault-policy.hcl
+/vault_setup/root_token.txt
+/vault_setup/keys.txt
+/vault_setup/app_token_response.txt
+/vault_setup/app_token.txt

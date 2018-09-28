@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROJECT=vault-controller
+PROJECT=vault
 
 oc project $PROJECT
 
