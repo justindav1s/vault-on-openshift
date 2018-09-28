@@ -9,5 +9,5 @@ oc new-app -f spring-vault-direct-template.yaml \
     -p VAULT_HOST=vault-vault-controller.apps.ocp.datr.eu \
     -p VAULT_PORT=443
 
-oc expose svc test1-direct-vault
+oc expose svc test1-direct-vault-demo
 
