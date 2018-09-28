@@ -2,26 +2,26 @@ apiVersion: v1
 kind: Template
 metadata:
   creationTimestamp: null
-  name: inventory-dev-dc
+  name: spring-vault-direct-template
 objects:
 - apiVersion: v1
   kind: Service
   metadata:
     labels:
-      app: spring-native-example
-    name: spring-native-example
+      app: ${APP_NAME}
+    name: ${APP_NAME}
   spec:
     ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
     selector:
-      app: spring-native-example
+      app: ${APP_NAME}
 
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
-    name: spring-native-example
+    name: ${APP_NAME}
   spec:
     triggers:
       -
@@ -31,26 +31,25 @@ objects:
         imageChangeParams:
           automatic: true
           containerNames:
-            - spring-native-example
+            - ${APP_NAME}
           from:
             kind: ImageStreamTag
-            namespace: spring-native-example
-            name: 'spring-native-example:latest'
+            name: ${IMAGE_NAME}:latest
     replicas: 1
     template:
       metadata:
         labels:
-          app: spring-native-example
+          app: ${APP_NAME}
       spec:
         containers:
-          - name: spring-native-example
-            image: "spring-native-example/spring-native-example:latest"
+          - name: ${APP_NAME}
+            image: ${IMAGE_NAME}:latest
             imagePullPolicy: Always
             env:
             - name: "VAULT_HOST"
               value: ${VAULT_HOST}
             - name: "VAULT_PORT"
-              value: "443"
+              value: ${VAULT_PORT}
             livenessProbe:
               httpGet:
                 path: /health
@@ -65,7 +64,19 @@ objects:
               periodSeconds: 3
 
 parameters:
+- description: Application Name
+  name: APP_NAME
+  required: true
+  value: "test1"
+- description: Image Name
+  name: IMAGE_NAME
+  required: true
+  value: "spring-vault-direct"
 - description: Vault Host
   name: VAULT_HOST
   required: true
-  value: vault-vault-controller.apps.ocp.datr.eu
+  value: "vault-vault-controller.apps.ocp.datr.eu"
+- description: Vault Port
+  name: VAULT_PORT
+  required: true
+  value: "443"
