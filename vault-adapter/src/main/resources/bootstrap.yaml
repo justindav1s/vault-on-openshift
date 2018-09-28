@@ -1,4 +1,4 @@
-spring.application.name: spring-native-example
+spring.application.name: test1
 spring.cloud.vault:
     host: ${vault.host:vault-vault-controller.apps.ocp.datr.eu}
     port: ${vault.port:443}
