@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Template
 metadata:
   creationTimestamp: null
-  name: spring-vault-direct-template
+  name: spring-app-vault-direct-init-container-template
 objects:
 - apiVersion: v1
   kind: Service
@@ -60,6 +60,10 @@ objects:
           - name: ${APP_NAME}
             image: ${IMAGE_NAME}:latest
             imagePullPolicy: Always
+            lifecycle:
+              postStart:
+                exec:
+                  command: ["/bin/sh", "-c", "rm -rf /tmp/${VAULT_USERROLE}.properties"]
             env:
             - name: "APP_NAME"
               value: ${APP_NAME}
