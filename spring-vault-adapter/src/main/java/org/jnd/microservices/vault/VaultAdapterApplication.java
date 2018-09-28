@@ -25,7 +25,7 @@ public class VaultAdapterApplication implements CommandLineRunner {
 	@Value("${password}")
 	String password;
 
-	@Value("${APP_NAME}")
+	@Value("${VAULT_USERROLE}")
 	String application;
 
 	@PostConstruct
