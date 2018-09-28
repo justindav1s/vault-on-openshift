@@ -48,7 +48,7 @@ objects:
           - name: "VAULT_HOST"
             value: ${VAULT_HOST}
           - name: "VAULT_PORT"
-              value: ${VAULT_PORT}
+            value: ${VAULT_PORT}
           - name: "APP_NAME"
             value: ${APP_NAME}
           - name: "VAULT_USERROLE"
