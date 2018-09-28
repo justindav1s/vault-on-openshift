@@ -23,7 +23,7 @@ CLIENT_TOKEN=`cat tokendata.json | jq -r .auth.client_token`
 
 echo CLIENT_TOKEN = $CLIENT_TOKEN
 
-curl \
+curl -s \
     --header "X-Vault-Token: $CLIENT_TOKEN" \
     -H "Accept: application/json" \
     --request GET \
