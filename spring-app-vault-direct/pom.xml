@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.jnd.microservices</groupId>
-	<artifactId>spring-vault-direct</artifactId>
+	<artifactId>spring-app-vault-direct</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>spring-vault-direct</name>
+	<name>spring-app-vault-direct</name>
 	<description>A spring boot app get secrets from vault</description>
 
 	<parent>

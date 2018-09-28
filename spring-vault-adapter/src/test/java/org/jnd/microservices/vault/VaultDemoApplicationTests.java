@@ -1,4 +1,4 @@
-package org.jnd.microservices.vaultdemo;
+package org.jnd.microservices.vault;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
