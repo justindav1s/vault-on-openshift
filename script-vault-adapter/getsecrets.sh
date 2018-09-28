@@ -27,7 +27,7 @@ curl \
     --header "X-Vault-Token: $CLIENT_TOKEN" \
     -H "Accept: application/json" \
     --request GET \
-    $VAULT_ADDR/v1/secret/${VAULT_ROLE} > /tmp/$VAULT_ROLE.properties
+    $VAULT_ADDR/v1/secret/${VAULT_ROLE} > /tmp/$VAULT_ROLE.json
 
 cat /tmp/$VAULT_ROLE.json
 
