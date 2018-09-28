@@ -2,6 +2,10 @@
 
 PROJECT=spring-vault-demo
 
+oc project spring-vault-demo
+
+oc delete dc,svc,route test1-app
+
 oc new-app -f spring-app-vault-direct-init-container-template.yaml \
     -p APP_NAME=test1-app \
     -p VAULT_USERROLE=test1 \
@@ -9,5 +13,5 @@ oc new-app -f spring-app-vault-direct-init-container-template.yaml \
     -p VAULT_HOST=vault-vault-controller.apps.ocp.datr.eu \
     -p VAULT_PORT=443
 
-oc expose svc test1
+oc expose svc test1-app
 
