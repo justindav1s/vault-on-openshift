@@ -4,28 +4,28 @@ https://www.vaultproject.io/
 
 ## Setup
 
-Scripts in the **vault_setup** folder set up Hashicorp Vault inside an Openshift/Kubernetes cluster.
+Scripts in the [vault_setup](vault_setup) folder set up Hashicorp Vault inside an Openshift/Kubernetes cluster.
 
    * [deploy_vault.sh](vault_setup/deploy_vault.sh)
       * Deploys Vault into its own namespace, see vault_setup/config/vault.yaml
       * Deploys a a ConfigMap to configure Vault, see _vault_setup/config/vault-config.json_
       * Exposes the Vault pod as a https route
       
-   * _init_vault.sh_
+   * [init_vault.sh](vault_setup/init_vault.sh)
       * Initialise Vault
       * Unseal Vault
       * Create and configure a ServiceAccount that Vault can use to to authenticate its clients against the Kubernetes realm
       * Enable and configure Vault to use Kubernetes as it's client identity store. This is useful because each new client Kubernetes name pace gets its own default SA capable of authenticating with Kubernetes and thus also with an appropriately configured Vault. Each namapace/project can use its default SA to obtain secrets.
       * Obtain the Root Token 
       
-   * _setup_app_vault_space.sh_
+   * [setup_app_vault_space.sh](vault_setup/setup_app_vault_space.sh)
      * With the Root Token :
      * Create and Configure a policy called "test1", that defines what secrets a "test1" role will have access to
      * Create and configure a role called "test1" and apply the "test1" policy to it.
      * Create some secrets for use by this 
      * Login to vault as the "test1" role and obtain its first token 
      
-   * _test_app_vault_space.sh_
+   * [test_app_vault_space.sh](vault_setup/test_app_vault_space.sh)
      * Using the test1 token obtained in the last step, test that secrets can be ontaind from the test1 namespace in Vault.
      
 ## Usage
