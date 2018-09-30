@@ -52,11 +52,11 @@ Of note within this app are the following files :
 
 If it is not possible to make significant changes to an app's source code, it is poosible to execute a script in an init-container in the same pod as the app-container, write secrets to file on a volume shared with the app-container. The app can then simply read secrets from disk.
 
-The folder [script-vault-adapter] contains :
-   * _getsecrets.sh_ - this script make simple http requests to authenticate with vault and obtain secrets in a json document
-   * _Dockerfile_ - the build for a docker image in which the getscrets.sh script will run
+The folder [script-vault-adapter](script-vault-adapter) contains :
+   * [getsecrets.sh](script-vault-adapter/getsecrets.sh) - this script make simple http requests to authenticate with vault and obtain secrets in a json document
+   * [Dockerfile](script-vault-adapter/Dockerfile) - the build for a docker image in which the getsecrets.sh script will run
    
-The folder **spring-app** contains :
+The folder [spring-app](spring-app) contains :
    * the source code of very simple app that loads secrets from a file
    * _spring-app-vault-direct-init-container-template.yaml_ : an openshift template that deploys the simple app, and also an init-container containing the script that interacts with Vault
    * Both container share an ephemeral volume at /tmp, the init-container writes secrets here, and the app conatiner reads them.
