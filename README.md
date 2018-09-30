@@ -39,7 +39,7 @@ Vault exposes an HTTPS API that clients can use to interact with it. The API can
 
 Code in the [spring-app-vault-direct](spring-app-vault-direct) folder demonstrates how to inject secrets into a simple Spring Boot app using Spring Cloud Vault
 
-The application code in this project has no knowledge of the existance of vault. Spring Cloud Vault takes charge, authenticates with ault, obtains secrets, and then simply injects secret values into variables defines in the application code of the same key as the secret. eg. the **"password" secret value** we configured in the previous section is simply injected into the **password** variable defined in _spring-app-vault-direct/src/main/java/org/jnd/microservices/vault/VaultDemoClientApplication.java_ 
+The application code in this project has no knowledge of the existance of vault. Spring Cloud Vault takes charge, authenticates with ault, obtains secrets, and then simply injects secret values into variables defines in the application code of the same key as the secret. eg. the **"password" secret value** we configured in the previous section is simply injected into the **password** variable defined in [VaultDemoClientApplication.java](spring-app-vault-direct/src/main/java/org/jnd/microservices/vault/VaultDemoClientApplication.java) 
 
 Of note within this app are the following files :
    * _spring-app-vault-direct/pom.xml_ - this defines the library dependencies necessary to use Spring Cloud Vault
