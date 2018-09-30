@@ -6,7 +6,7 @@ https://www.vaultproject.io/
 
 Scripts in the **vault_setup** folder set up Hashicorp Vault inside an Openshift/Kubernetes cluster.
 
-   * _deploy_vault.sh_
+   * [deploy_vault.sh](https://github.com/justindav1s/kube-vault-adapter/blob/master/vault_setup/deploy_vault.sh)
       * Deploys Vault into its own namespace, see vault_setup/config/vault.yaml
       * Deploys a a ConfigMap to configure Vault, see _vault_setup/config/vault-config.json_
       * Exposes the Vault pod as a https route
