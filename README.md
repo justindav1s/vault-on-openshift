@@ -7,8 +7,8 @@ https://www.vaultproject.io/
 Scripts in the [vault_setup](vault_setup) folder set up Hashicorp Vault inside an Openshift/Kubernetes cluster.
 
    * [deploy_vault.sh](vault_setup/deploy_vault.sh)
-      * Deploys Vault into its own namespace, see vault_setup/config/vault.yaml
-      * Deploys a a ConfigMap to configure Vault, see _vault_setup/config/vault-config.json_
+      * Deploys Vault into its own namespace, see [vault_setup/config/vault.yaml](vault_setup/config/vault.yaml)
+      * Deploys a a ConfigMap to configure Vault, see [vault_setup/config/vault-config.json](vault_setup/config/vault-config.json)
       * Exposes the Vault pod as a https route
       
    * [init_vault.sh](vault_setup/init_vault.sh)
@@ -37,7 +37,7 @@ Vault exposes an HTTPS API that clients can use to interact with it. The API can
    
 ### Integrating Spring Boot apps with Vault for secrets management.
 
-Code in the **spring-app-vault-direct** demonstrates how to inject secrets into a simple Spring Boot app using Spring Cloud Vault
+Code in the [spring-app-vault-direct](spring-app-vault-direct) folder demonstrates how to inject secrets into a simple Spring Boot app using Spring Cloud Vault
 
 The application code in this project has no knowledge of the existance of vault. Spring Cloud Vault takes charge, authenticates with ault, obtains secrets, and then simply injects secret values into variables defines in the application code of the same key as the secret. eg. the **"password" secret value** we configured in the previous section is simply injected into the **password** variable defined in _spring-app-vault-direct/src/main/java/org/jnd/microservices/vault/VaultDemoClientApplication.java_ 
 
