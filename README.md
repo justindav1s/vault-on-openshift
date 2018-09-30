@@ -58,7 +58,7 @@ The folder [script-vault-adapter](script-vault-adapter) contains :
    
 The folder [spring-app](spring-app) contains :
    * the source code of very simple app that loads secrets from a file
-   * _spring-app-vault-direct-init-container-template.yaml_ : an openshift template that deploys the simple app, and also an init-container containing the script that interacts with Vault
+   * [spring-app-vault-direct-init-container-template.yaml](spring-app/spring-app-vault-direct-init-container-template.yaml) : an openshift template that deploys the simple app, and also an init-container containing the script that interacts with Vault
    * Both container share an ephemeral volume at /tmp, the init-container writes secrets here, and the app conatiner reads them.
    * The secrets file is deleted a short interval after app-container start so that secrets do not remain accessible on the ephemeral volume.  
           
