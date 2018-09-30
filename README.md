@@ -42,8 +42,8 @@ Code in the [spring-app-vault-direct](spring-app-vault-direct) folder demonstrat
 The application code in this project has no knowledge of the existance of vault. Spring Cloud Vault takes charge, authenticates with ault, obtains secrets, and then simply injects secret values into variables defines in the application code of the same key as the secret. eg. the **"password" secret value** we configured in the previous section is simply injected into the **password** variable defined in [VaultDemoClientApplication.java](spring-app-vault-direct/src/main/java/org/jnd/microservices/vault/VaultDemoClientApplication.java) 
 
 Of note within this app are the following files :
-   * _spring-app-vault-direct/pom.xml_ - this defines the library dependencies necessary to use Spring Cloud Vault
-   * _spring-app-vault-direct/src/main/resources/bootstrap.yaml_ - this defines :
+   * [spring-app-vault-direct/pom.xml](spring-app-vault-direct/pom.xml) - this defines the library dependencies necessary to use Spring Cloud Vault
+   * [spring-app-vault-direct/src/main/resources/bootstrap.yaml](spring-app-vault-direct/src/main/resources/bootstrap.yaml) - this defines :
       * The role the app will use to obtain secrets
       * The location of the Vault server
       * The location in the pod where a JWT can be obtained with which to authenticate with Vault (and thence Kubernetes)
@@ -52,7 +52,7 @@ Of note within this app are the following files :
 
 If it is not possible to make significant changes to an app's source code, it is poosible to execute a script in an init-container in the same pod as the app-container, write secrets to file on a volume shared with the app-container. The app can then simply read secrets from disk.
 
-The folder **script-vault-adapter** contains :
+The folder [script-vault-adapter] contains :
    * _getsecrets.sh_ - this script make simple http requests to authenticate with vault and obtain secrets in a json document
    * _Dockerfile_ - the build for a docker image in which the getscrets.sh script will run
    
