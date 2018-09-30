@@ -7,7 +7,7 @@ oc project $PROJECT
 
 export APPNAME=test1
 
-export VAULT_ADDR=https://`oc get route -n vault-controller | grep -m1 vault | awk '{print $2}'`
+export VAULT_ADDR=https://`oc get route -n vault | grep -m1 vault | awk '{print $2}'`
 
 export ROOT_TOKEN=`cat root_token.txt| head -1`
 export VAULT_TOKEN=$ROOT_TOKEN

@@ -56,14 +56,6 @@ objects:
           volumeMounts:
           - name: secret-volume
             mountPath: /tmp
-        - name: script-vault-adapter
-          image: docker-registry.default.svc:5000/spring-vault-demo/script-vault-adapter
-          env:
-          command: ['/bin/bash']
-          args: ['-c', "./getsecrets.sh https://${VAULT_HOST}:${VAULT_PORT} ${VAULT_USERROLE}"]
-          volumeMounts:
-          - name: secret-volume
-            mountPath: /tmp
         containers:
           - name: ${APP_NAME}
             image: ${IMAGE_NAME}:latest
@@ -112,7 +104,7 @@ parameters:
 - description: Vault Host
   name: VAULT_HOST
   required: true
-  value: "vault-vault-controller.apps.ocp.datr.eu"
+  value: "vault-vault.apps.ocp.datr.eu"
 - description: Vault Port
   name: VAULT_PORT
   required: true

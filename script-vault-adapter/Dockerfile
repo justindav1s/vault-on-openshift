@@ -22,4 +22,4 @@ ADD remote_test.sh /vault
 
 USER vault
 
-CMD ["./remote_test.sh"]
+CMD ["./getsecrets.sh"]

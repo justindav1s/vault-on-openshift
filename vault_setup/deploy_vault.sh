@@ -16,3 +16,5 @@ oc create -f ./config/vault.yaml
 oc create route reencrypt vault --port=8200 --service=vault
 export VAULT_ADDR=https://`oc get route | grep -m1 vault | awk '{print $2}'`
 
+echo VAULT_ADDR = $VAULT_ADDR
+
