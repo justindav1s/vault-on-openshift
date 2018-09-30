@@ -1,4 +1,4 @@
-#Integrating Hashicorp Vault with Openshift/Kubernetes
+# Integrating Hashicorp Vault with Openshift/Kubernetes
 
 https://www.vaultproject.io/
 
