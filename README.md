@@ -2,6 +2,12 @@
 
 https://www.vaultproject.io/
 
+on 
+
+https://www.openshift.com/
+or
+https://kubernetes.io/
+
 ## Setup
 
 Scripts in the [vault_setup](vault_setup) folder set up Hashicorp Vault inside an Openshift/Kubernetes cluster.
