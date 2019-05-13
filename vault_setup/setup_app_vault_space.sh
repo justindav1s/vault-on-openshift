@@ -30,6 +30,9 @@ vault write \
     bound_service_account_namespaces='*' \
     policies=${APPNAME} ttl=2h
 
+vault secrets disable secret
+vault secrets enable -version=1 -path=secret kv
+
 vault write -tls-skip-verify secret/${APPNAME} password=pwd_from_vault
 
 default_account_token=$(oc serviceaccounts get-token default -n default)

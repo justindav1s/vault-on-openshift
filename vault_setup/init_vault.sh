@@ -14,6 +14,7 @@ export KEYS=`cat init.txt | grep "Unseal Key" | awk '{print $4}'`
 export ROOT_TOKEN=`cat init.txt | grep "Root Token" | awk '{print $4}'`
 
 vault operator unseal -tls-skip-verify $KEYS
+
 oc create sa vault-auth
 oc adm policy add-cluster-role-to-user system:auth-delegator -z vault-auth
 reviewer_service_account_jwt=$(oc serviceaccounts get-token vault-auth)
