@@ -24,14 +24,14 @@ vault secrets disable ${PROJECT}
 vault secrets enable -version=1 -path=${PROJECT} kv
 
 cat <<EOF > ${PROJECT}.hcl
-path "${PROJECT}/*" {
+path "${PROJECT}/${APPNAME}" {
   capabilities = ["read", "list"]
 }
 EOF
 
 vault policy write \
     -tls-skip-verify \
-    ${PROJECT} \
+    ${PROJECT}-${APPNAME} \
     ./${PROJECT}.hcl
 
 vault write \
