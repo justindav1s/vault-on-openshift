@@ -51,6 +51,8 @@ objects:
               value: ${VAULT_PORT}
             - name: "VAULT_USERROLE"
               value: ${VAULT_USERROLE}
+            - name: SPRING_PROFILES_ACTIVE
+              value: "dev"
             livenessProbe:
               httpGet:
                 path: /health
