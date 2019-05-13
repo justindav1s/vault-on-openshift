@@ -25,7 +25,7 @@ public class VaultDemoClientApplication {
 		SpringApplication.run(VaultDemoClientApplication.class, args);
 	}
 
-	@Value("${password}")
+	@Value("${spring-vault-demo.password}")
 	String password;
 
 	@PostConstruct
