@@ -2,14 +2,22 @@
 
 https://www.vaultproject.io/
 
+on 
+
+https://www.openshift.com/
+
+or
+
+https://kubernetes.io/
+
 ## Setup
 
 Scripts in the [vault_setup](vault_setup) folder set up Hashicorp Vault inside an Openshift/Kubernetes cluster.
 
    * [deploy_vault.sh](vault_setup/deploy_vault.sh)
-      * Deploys a a ConfigMap to configure Vault, see [vault_setup/config/vault-config.json](vault_setup/config/vault-config.json)
-      * Deploys Vault into its own namespace, see [vault_setup/config/vault.yaml](vault_setup/config/vault.yaml)
-      * Exposes the Vault pod as a https route
+      * Deploy ConfigMap to configure Vault, see [vault_setup/config/vault-config.json](vault_setup/config/vault-config.json)
+      * Deploy Vault into its own namespace, see [vault_setup/config/vault.yaml](vault_setup/config/vault.yaml)
+      * Exposes the Vault pod with a https route
       
    * [init_vault.sh](vault_setup/init_vault.sh)
       * Initialise Vault
@@ -20,7 +28,7 @@ Scripts in the [vault_setup](vault_setup) folder set up Hashicorp Vault inside a
       
    * [setup_app_vault_space.sh](vault_setup/setup_app_vault_space.sh)
      * With the Root Token :
-     * Create and Configure a policy called "test1", that defines what secrets a "test1" role will have access to
+     * Create and configure a policy called "test1", that defines what secrets a "test1" role will have access to
      * Create and configure a role called "test1" and apply the "test1" policy to it.
      * Create some secrets for use by this role
      * Login to vault as the "test1" role and obtain its first token 
