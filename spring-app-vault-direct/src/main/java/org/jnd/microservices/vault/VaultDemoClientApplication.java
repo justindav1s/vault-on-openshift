@@ -30,7 +30,7 @@ public class VaultDemoClientApplication {
 
 	@PostConstruct
 	private void postConstruct() {
-		log.info("*****************My password is: " + password);
+		log.info("*****************My db.password is: " + password);
 
 		Properties myProps = new Properties();
 		myProps.putIfAbsent("password", password);
