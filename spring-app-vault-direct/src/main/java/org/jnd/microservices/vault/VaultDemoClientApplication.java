@@ -26,14 +26,17 @@ public class VaultDemoClientApplication {
 	}
 
 	@Value("${db.password}")
-	String password;
+	String dbpassword;
+	@Value("${broker.password}")
+	String brokerpassword;
 
 	@PostConstruct
 	private void postConstruct() {
-		log.info("*****************My db.password is: " + password);
+		log.info("*****************My db.password is: " + dbpassword);
+		log.info("*****************My broker.password is: " + brokerpassword);
 
 		Properties myProps = new Properties();
-		myProps.putIfAbsent("password", password);
+		myProps.putIfAbsent("password", dbpassword);
 		try {
 			myProps.store(new FileWriter(new File("/tmp/app.properties")), null);
 		} catch (IOException e) {
@@ -48,6 +51,6 @@ public class VaultDemoClientApplication {
 
 	@RequestMapping(value = "/secret", method = RequestMethod.GET)
 	public String getSecret() {
-		return password;
+		return dbpassword+", "+brokerpassword;
 	}
 }
