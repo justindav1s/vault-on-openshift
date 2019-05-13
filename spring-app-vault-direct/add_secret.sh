@@ -12,3 +12,8 @@ export VAULT_TOKEN=$ROOT_TOKEN
 
 vault write -tls-skip-verify secret/${APPNAME}/dev broker.password=pwd_for_broker db.password=pwd_for_db
 
+curl \
+    --header "X-Vault-Token: $VAULT_TOKEN" \
+    --request GET \
+    https://vault-vault.apps.ocp.datr.eu/v1/secret/data/${APPNAME}/dev
+

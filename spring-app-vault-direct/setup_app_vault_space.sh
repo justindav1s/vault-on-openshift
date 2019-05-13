@@ -21,12 +21,12 @@ export ROOT_TOKEN=`cat ../vault_setup/root_token.txt| head -1`
 export VAULT_TOKEN=$ROOT_TOKEN
 
 vault secrets disable ${PROJECT}
-vault secrets disable secret
+vault secrets disable secret/data
 vault secrets enable -version=2 -path=secret kv
 
 cat <<EOF > ${APPNAME}.hcl
-path "secret/${APPNAME}/*" {
-  capabilities = ["read", "list"]
+path "secret/data/${APPNAME}/*" {
+  capabilities = ["create", "update", "read"]
 }
 EOF
 
