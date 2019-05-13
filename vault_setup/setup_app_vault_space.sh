@@ -18,7 +18,7 @@ path "secret/${APPNAME}" {
 }
 EOF
 
-vault policy-write \
+vault policy write \
     -tls-skip-verify \
     ${APPNAME} \
     ./${APPNAME}.hcl
