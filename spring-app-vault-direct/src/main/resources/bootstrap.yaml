@@ -9,4 +9,6 @@ spring.cloud.vault:
         service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
     config:
         order: 10
+    kv:
+        enabled: true
 logging.level.org.springframework: info

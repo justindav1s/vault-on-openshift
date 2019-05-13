@@ -22,7 +22,7 @@ export VAULT_TOKEN=$ROOT_TOKEN
 
 vault secrets disable ${PROJECT}
 vault secrets disable secret
-vault secrets enable -version=1 -path=secret kv
+vault secrets enable -version=2 -path=secret kv
 
 cat <<EOF > ${APPNAME}.hcl
 path "secret/${APPNAME}/*" {
@@ -42,7 +42,8 @@ vault write \
     bound_service_account_namespaces=${PROJECT} \
     policies=${APPNAME} ttl=2h
 
-vault write -tls-skip-verify secret/${APPNAME}/dev password=pwd_from_vault
+#vault write -tls-skip-verify secret/${APPNAME}/dev broker.password=pwd_for_broker db.password=pwd_for_db
+vault kv put -tls-skip-verify secret/${APPNAME}/dev broker.password=pwd_for_broker db.password=pwd_for_db
 
 default_account_token=$(oc serviceaccounts get-token default -n ${PROJECT})
 
