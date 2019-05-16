@@ -1,3 +1,4 @@
+spring.application.name: spring-vault-demo
 spring.cloud.vault:
     host: ${VAULT_HOST}
     port: ${VAULT_PORT}
