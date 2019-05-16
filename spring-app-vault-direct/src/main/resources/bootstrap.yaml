@@ -17,3 +17,4 @@ spring.cloud.vault:
         application-name: ${spring.application.name}
 
 logging.level.org.springframework: info
+logging.level.org.springframework.vault: error
