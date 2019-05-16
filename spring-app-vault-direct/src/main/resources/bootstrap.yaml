@@ -1,4 +1,3 @@
-spring.application.name: ${VAULT_USERROLE}
 spring.cloud.vault:
     host: ${VAULT_HOST}
     port: ${VAULT_PORT}
@@ -11,4 +10,9 @@ spring.cloud.vault:
         order: 10
     kv:
         enabled: true
+        backend: vrm
+        profile-separator: '/'
+        default-context: ${spring.application.name}
+        application-name: ${spring.application.name}
+
 logging.level.org.springframework: info
