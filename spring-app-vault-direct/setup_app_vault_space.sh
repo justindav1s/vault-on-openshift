@@ -28,7 +28,7 @@ vault secrets enable -version=2 -path=${APPDOMAIN} kv
 
 cat <<EOF > ${APPDOMAIN}-${APPNAME}.hcl
 path "${APPDOMAIN}/data/${APPNAME}/*" {
-  capabilities = ["create", "update", "read"]
+  capabilities = ["create", "update", "read", "list"]
 }
 EOF
 
@@ -56,3 +56,5 @@ export APP_TOKEN=`cat app_token_response.txt | grep '^token ' | awk '{print $2}'
 echo $APP_TOKEN > app_token.txt
 
 echo APP_TOKEN=$APP_TOKEN
+
+# https://vault-vault.apps.ocp.datr.eu/ui/vault/secrets/vrm/show/spring-vault-demo/dev id browser viewable
