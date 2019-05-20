@@ -7,18 +7,18 @@ PROJECT=$4
 APPNAME=$5
 VAULT_ROLE=$6
 
-./oc login ${OCP_URL} --username=${OCP_USER} --password=${OCP_PWD} --insecure-skip-tls-verify=true
+oc login ${OCP_URL} --username=${OCP_USER} --password=${OCP_PWD} --insecure-skip-tls-verify=true
 
-VAULT_ADDR=https://`./oc get route -n vault-controller | grep -m1 vault | awk '{print $2}'`
+VAULT_ADDR=https://`oc get route -n vault | grep -m1 vault | awk '{print $2}'`
 echo VAULT_ADDR = $VAULT_ADDR
 
-./oc project $PROJECT
+oc project $PROJECT
 
-POD=`./oc get pods | grep $APPNAME | awk '{print $1}'`
+POD=`oc get pods | grep Running | grep $APPNAME | awk '{print $1}'`
 
 echo POD = $POD
 
-JWT=`./oc rsh $POD cat /var/run/secrets/kubernetes.io/serviceaccount/token`
+JWT=`oc rsh $POD cat /var/run/secrets/kubernetes.io/serviceaccount/token`
 
 echo JWT = $JWT
 
@@ -39,6 +39,6 @@ curl \
     --header "X-Vault-Token: $CLIENT_TOKEN" \
     -H "Accept: application/json" \
     --request GET \
-    $VAULT_ADDR/v1/secret/${VAULT_ROLE}
+    $VAULT_ADDR/v1/ola/data/spring-vault-demo/dev
 
 rm -rf tokendata.json payload.json
