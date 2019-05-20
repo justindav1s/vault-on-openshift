@@ -43,7 +43,7 @@ objects:
       spec:
         initContainers:
         - name: spring-vault-adapter
-          image: docker-registry.default.svc:5000/${APP_DOMAIN}-${SPRING_PROFILES_ACTIVE}/spring-vault-adapter:latest
+          image: spring-vault-adapter:latest
           env:
           - name: "VAULT_HOST"
             value: ${VAULT_HOST}
