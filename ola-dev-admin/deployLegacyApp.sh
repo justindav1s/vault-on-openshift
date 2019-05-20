@@ -13,7 +13,7 @@ oc delete buildconfig spring-app-vault-direct
 oc delete imagestream spring-app-vault-direct
 oc delete route spring-vault-demo
 
-oc delete service spring-vault-demo
+oc delete service spring-app
 oc delete deploymentconfig spring-app
 oc delete buildconfig spring-app
 oc delete imagestream spring-app
