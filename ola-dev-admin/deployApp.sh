@@ -13,6 +13,12 @@ oc delete buildconfig spring-app-vault-direct
 oc delete imagestream spring-app-vault-direct
 oc delete route spring-vault-demo
 
+oc delete service spring-app
+oc delete deploymentconfig spring-app
+oc delete buildconfig spring-app
+oc delete imagestream spring-app
+oc delete route spring-app
+
 oc new-build \
     registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift~https://github.com/justindav1s/kube-vault-adapter \
     --context-dir=spring-app-vault-direct \

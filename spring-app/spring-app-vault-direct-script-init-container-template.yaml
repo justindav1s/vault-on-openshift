@@ -43,7 +43,7 @@ objects:
       spec:
         initContainers:
         - name: script-vault-adapter
-          image: script-vault-adapter:latest
+          image: docker-registry.default.svc:5000/ola-dev/script-vault-adapter:latest
           env:
           - name: "VAULT_HOST"
             value: ${VAULT_HOST}
