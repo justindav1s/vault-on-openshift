@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-#set -x
-
 APPDOMAIN=ola
-POLICY=${APPDOMAIN}-dev-admin
+POLICY=${APPDOMAIN}-admin
 
 export VAULT_ADDR=https://$(oc get route -n vault | grep -m1 vault | awk '{print $2}')
 
@@ -28,18 +26,3 @@ curl \
     --header "X-Vault-Token: $VAULT_TOKEN" \
     --request GET \
     ${VAULT_ADDR}/v1/auth/token/lookup-self
-
-
-curl \
-    --header "X-Vault-Token: $VAULT_TOKEN" \
-    ${VAULT_ADDR}/v1/${APPDOMAIN}/data/spring-vault-demo/dev
-
-curl \
-    --header "X-Vault-Token: $VAULT_TOKEN" \
-    ${VAULT_ADDR}/v1/${APPDOMAIN}/data/spring-vault-demo/prd
-
-vault kv get ${APPDOMAIN}/spring-vault-demo/dev
-vault kv get ${APPDOMAIN}/spring-vault-demo/prd
-
-
-

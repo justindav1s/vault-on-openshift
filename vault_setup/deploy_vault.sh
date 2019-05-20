@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PROJECT=vault
+PROJECT=vault2
 
 oc delete project $PROJECT
 oc new-project $PROJECT 2> /dev/null

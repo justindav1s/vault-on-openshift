@@ -2,13 +2,12 @@
 
 #set -x
 
-USER=admin
-PASSWORD=admin
-POLICY=admin
+APPDOMAIN=ola
+POLICY=${APPDOMAIN}-dev-admin
 
 export VAULT_ADDR=https://$(oc get route -n vault | grep -m1 vault | awk '{print $2}')
 
-export VAULT_TOKEN=$(cat ../vault_setup/root_token.txt| head -1)
+export VAULT_TOKEN=$(cat ../admin/admin_token.txt| head -1)
 
 echo VAULT_TOKEN = $VAULT_TOKEN
 
@@ -23,20 +22,9 @@ export VAULT_TOKEN=$(vault token create -tls-skip-verify -policy=$POLICY | grep 
 
 echo VAULT_TOKEN = $VAULT_TOKEN
 
-echo $VAULT_TOKEN > admin_token.txt
-
-vault policy list
+echo $VAULT_TOKEN > ${POLICY}_token.txt
 
 curl \
     --header "X-Vault-Token: $VAULT_TOKEN" \
     --request GET \
     ${VAULT_ADDR}/v1/auth/token/lookup-self
-
-curl \
-    --header "X-Vault-Token: $VAULT_TOKEN" \
-    --request LIST \
-    ${VAULT_ADDR}/v1/sys/policies/acl
-
-
-
-
