@@ -53,6 +53,8 @@ objects:
             value: ${APP_NAME}
           - name: "VAULT_USERROLE"
             value: ${VAULT_USERROLE}
+          - name: "SPRING_PROFILES_ACTIVE"
+            value: ${SPRING_PROFILES_ACTIVE}
           volumeMounts:
           - name: secret-volume
             mountPath: /tmp
@@ -69,6 +71,8 @@ objects:
               value: ${APP_NAME}
             - name: "VAULT_USERROLE"
               value: ${VAULT_USERROLE}
+            - name: "SPRING_PROFILES_ACTIVE"
+              value: ${SPRING_PROFILES_ACTIVE}
             livenessProbe:
               httpGet:
                 path: /health
@@ -93,6 +97,14 @@ parameters:
   name: APP_NAME
   required: true
   value: "test1-app"
+- description: Application Domain
+  name: APP_DOMAIN
+  required: true
+  value: "ola"
+- description: Spring ACtive Profile
+  name: SPRING_PROFILES_ACTIVE
+  required: true
+  value: "dev"
 - description: Vault User and Role
   name: VAULT_USERROLE
   required: true

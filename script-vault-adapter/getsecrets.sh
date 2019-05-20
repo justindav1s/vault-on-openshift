@@ -5,6 +5,7 @@ VAULT_ROLE=$2
 
 echo VAULT_ADDR = $VAULT_ADDR
 echo VAULT_ROLE = $VAULT_ROLE
+echo SPRING_PROFILES_ACTIVE = $SPRING_PROFILES_ACTIVE
 
 JWT=`cat /var/run/secrets/kubernetes.io/serviceaccount/token`
 
