@@ -42,8 +42,8 @@ objects:
           app: ${APP_NAME}
       spec:
         initContainers:
-        - name: spring-vault-adapter
-          image: spring-vault-adapter:latest
+        - name: script-vault-adapter
+          image: script-vault-adapter:latest
           env:
           - name: "VAULT_HOST"
             value: ${VAULT_HOST}
