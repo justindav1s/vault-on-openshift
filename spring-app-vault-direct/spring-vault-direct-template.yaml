@@ -47,6 +47,8 @@ objects:
             env:
             - name: "VAULT_HOST"
               value: ${VAULT_HOST}
+            - name: "APP_DOMAIN"
+              value: ${APP_DOMAIN}
             - name: "VAULT_PORT"
               value: ${VAULT_PORT}
             - name: "VAULT_USERROLE"
@@ -71,6 +73,10 @@ parameters:
   name: APP_NAME
   required: true
   value: "test1-direct-vault"
+- description: Application Domain
+  name: APP_DOMAIN
+  required: true
+  value: "ola"
 - description: Vault User and Role
   name: VAULT_USERROLE
   required: true

@@ -11,7 +11,7 @@ spring.cloud.vault:
         order: 10
     kv:
         enabled: true
-        backend: vrm
+        backend: ${APP_DOMAIN}
         profile-separator: '/'
         default-context: ${spring.application.name}
         application-name: ${spring.application.name}
