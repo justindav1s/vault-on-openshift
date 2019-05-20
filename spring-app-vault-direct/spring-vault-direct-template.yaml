@@ -53,8 +53,8 @@ objects:
               value: ${VAULT_PORT}
             - name: "VAULT_USERROLE"
               value: ${VAULT_USERROLE}
-            - name: SPRING_PROFILES_ACTIVE
-              value: "dev"
+            - name: "SPRING_PROFILES_ACTIVE"
+              value: ${SPRING_PROFILES_ACTIVE}
             livenessProbe:
               httpGet:
                 path: /health
@@ -77,6 +77,10 @@ parameters:
   name: APP_DOMAIN
   required: true
   value: "ola"
+- description: Spring ACtive Profile
+  name: SPRING_PROFILES_ACTIVE
+  required: true
+  value: "dev"
 - description: Vault User and Role
   name: VAULT_USERROLE
   required: true
