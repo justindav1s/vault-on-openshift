@@ -32,6 +32,6 @@ curl -v \
 cat /tmp/$VAULT_USERROLE.json | jq .data.data > /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.json
 
 
-./vault get kv ${APP_DOMAIN}/${APP_NAME}/${ENV} > /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.txt
+./vault kv get ${APP_DOMAIN}/${APP_NAME}/${ENV} > /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.txt
 
 cat /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.txt
