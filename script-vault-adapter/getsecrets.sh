@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-VAULT_HOST=$1
-VAULT_USERROLE=$2
-SPRING_PROFILES_ACTIVE=$3
+#VAULT_HOST=$1
+#VAULT_USERROLE=$2
+#SPRING_PROFILES_ACTIVE=$3
 
 echo VAULT_HOST = $VAULT_HOST
 echo VAULT_USERROLE = $VAULT_USERROLE
@@ -33,4 +33,4 @@ curl -s \
 
 cat /tmp/$VAULT_USERROLE.json
 
-rm -rf tokendata.json payload.json
+#rm -rf tokendata.json payload.json

@@ -62,10 +62,10 @@ objects:
           - name: ${APP_NAME}
             image: ${IMAGE_NAME}:latest
             imagePullPolicy: Always
-            lifecycle:
-              postStart:
-                exec:
-                  command: ["/bin/sh", "-c", "sleep 30; rm -rf /tmp/${VAULT_USERROLE}.properties"]
+#            lifecycle:
+#              postStart:
+#                exec:
+#                  command: ["/bin/sh", "-c", "sleep 30; rm -rf /tmp/${VAULT_USERROLE}.properties"]
             env:
             - name: "APP_NAME"
               value: ${APP_NAME}
