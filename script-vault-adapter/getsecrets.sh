@@ -35,4 +35,6 @@ curl -v \
 
 cat /tmp/$VAULT_USERROLE.json | jq .
 
+cat /tmp/$VAULT_USERROLE.json | jq .data
+
 #rm -rf tokendata.json payload.json
