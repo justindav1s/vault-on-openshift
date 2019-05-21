@@ -34,7 +34,9 @@ curl -v \
     $VAULT_HOST/v1/${APP_DOMAIN}/data/${APP_NAME}/${SPRING_PROFILES_ACTIVE} > /tmp/$VAULT_USERROLE.json
 
 cat /tmp/$VAULT_USERROLE.json | jq .
-
+echo
 cat /tmp/$VAULT_USERROLE.json | jq .data
+echo
+cat /tmp/$VAULT_USERROLE.json | jq .data.data
 
 #rm -rf tokendata.json payload.json
