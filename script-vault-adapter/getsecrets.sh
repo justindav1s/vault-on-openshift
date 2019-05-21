@@ -14,7 +14,7 @@ cat <<EOF > payload.json
 {"role": "$VAULT_USERROLE", "jwt": "$JWT"}
 EOF
 
-curl -v $VAULT_ADDR/v1/auth/kubernetes/login \
+curl -s $VAULT_ADDR/v1/auth/kubernetes/login \
 -H "Accept: application/json" \
 -H "Content-Type:application/json" \
 --data  @payload.json | jq . > tokendata.json
@@ -31,6 +31,7 @@ curl -s \
 
 cat /tmp/$VAULT_USERROLE.json | jq .data.data > /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.json
 
+cat /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.json
 
 ./vault kv get ${APP_DOMAIN}/${APP_NAME}/${ENV} > /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.txt
 
