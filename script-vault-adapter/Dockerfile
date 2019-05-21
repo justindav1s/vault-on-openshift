@@ -17,7 +17,8 @@ RUN tar zxvf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz &&
     cp openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc .
 
 RUN wget https://releases.hashicorp.com/vault/1.1.2/vault_1.1.2_linux_amd64.zip && \
-    tar zxvf vault_1.1.2_linux_amd64.zip
+    unzip vault_1.1.2_linux_amd64.zip && ls -ltr
+
 
 ADD getsecrets.sh /vault
 
