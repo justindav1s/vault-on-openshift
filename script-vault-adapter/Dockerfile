@@ -1,6 +1,6 @@
 FROM centos
 
-RUN yum -y update && yum -y install epel-release && yum -y install jq wget curl
+RUN yum -y update && yum -y install epel-release && yum -y install jq wget curl unzip
 
 RUN groupadd vault && \
     adduser -g vault vault && \
