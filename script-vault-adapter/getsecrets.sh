@@ -19,11 +19,11 @@ curl -v $VAULT_ADDR/v1/auth/kubernetes/login \
 -H "Content-Type:application/json" \
 --data  @payload.json | jq . > tokendata.json
 
-VAULT_TOKEN=`cat tokendata.json | jq -r .auth.client_token`
+export VAULT_TOKEN=`cat tokendata.json | jq -r .auth.client_token`
 
 echo VAULT_TOKEN = $VAULT_TOKEN
 
-curl -v \
+curl -s \
     --header "X-Vault-Token: $VAULT_TOKEN" \
     -H "Accept: application/json" \
     --request GET \
