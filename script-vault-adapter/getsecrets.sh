@@ -4,7 +4,7 @@
 #VAULT_USERROLE=$2
 #SPRING_PROFILES_ACTIVE=$3
 
-echo VAULT_HOST = $VAULT_HOST
+echo VAULT_ADDR = $VAULT_ADDR
 echo VAULT_USERROLE = $VAULT_USERROLE
 echo SPRING_PROFILES_ACTIVE = $SPRING_PROFILES_ACTIVE
 echo APP_NAME = $APP_NAME
@@ -23,9 +23,9 @@ curl -v $VAULT_HOST/v1/auth/kubernetes/login \
 -H "Content-Type:application/json" \
 --data  @payload.json | jq . > tokendata.json
 
-CLIENT_TOKEN=`cat tokendata.json | jq -r .auth.client_token`
+VAULT_TOKEN=`cat tokendata.json | jq -r .auth.client_token`
 
-echo CLIENT_TOKEN = $CLIENT_TOKEN
+echo VAULT_TOKEN = $VAULT_TOKEN
 
 curl -v \
     --header "X-Vault-Token: $CLIENT_TOKEN" \
@@ -33,12 +33,9 @@ curl -v \
     --request GET \
     $VAULT_HOST/v1/${APP_DOMAIN}/data/${APP_NAME}/${SPRING_PROFILES_ACTIVE} > /tmp/$VAULT_USERROLE.json
 
-cat /tmp/$VAULT_USERROLE.json | jq .data.data > ${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.json
+cat /tmp/$VAULT_USERROLE.json | jq .data.data > /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.json
 
-curl -v \
-    --header "X-Vault-Token: $CLIENT_TOKEN" \
-    -H "Accept: text/plain" \
-    --request GET \
-    $VAULT_HOST/v1/${APP_DOMAIN}/data/${APP_NAME}/${SPRING_PROFILES_ACTIVE} > /tmp/$VAULT_USERROLE.txt
 
-cat /tmp/$VAULT_USERROLE.txt
+vault get kv ${APP_DOMAIN}/${APP_NAME}/${ENV} > /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.txt
+
+cat /tmp/${APP_DOMAIN}-${APP_NAME}-${SPRING_PROFILES_ACTIVE}.txt

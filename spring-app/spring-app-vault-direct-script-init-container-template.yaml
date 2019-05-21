@@ -51,8 +51,8 @@ objects:
             value: ${APP_DOMAIN}
           - name: "SPRING_PROFILES_ACTIVE"
             value: ${SPRING_PROFILES_ACTIVE}
-          - name: "VAULT_HOST"
-            value: ${VAULT_HOST}
+          - name: "VAULT_ADDR"
+            value: ${VAULT_ADDR}
           - name: "VAULT_USERROLE"
             value: ${VAULT_USERROLE}
           volumeMounts:
@@ -116,6 +116,6 @@ parameters:
   required: true
   value: "spring-app"
 - description: Vault Host
-  name: VAULT_HOST
+  name: VAULT_ADDR
   required: true
   value: "https://vault-vault.apps.ocp.datr.eu"
