@@ -8,6 +8,8 @@ VAULT_HOST=https://$VAULT_HOST
 echo VAULT_HOST = $VAULT_HOST
 echo VAULT_USERROLE = $VAULT_USERROLE
 echo SPRING_PROFILES_ACTIVE = $SPRING_PROFILES_ACTIVE
+echo APP_NAME = $APP_NAME
+echo APP_DOMAIN = $APP_DOMAIN
 
 JWT=`cat /var/run/secrets/kubernetes.io/serviceaccount/token`
 
@@ -30,7 +32,7 @@ curl -v \
     --header "X-Vault-Token: $CLIENT_TOKEN" \
     -H "Accept: application/json" \
     --request GET \
-    $VAULT_HOST/v1/secret/${VAULT_USERROLE} > /tmp/$VAULT_USERROLE.json
+    $VAULT_HOST/v1/${APP_DOMAIN}/data/${APP_NAME}/${SPRING_PROFILES_ACTIVE} > /tmp/$VAULT_USERROLE.json
 
 cat /tmp/$VAULT_USERROLE.json
 
