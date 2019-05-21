@@ -4,6 +4,7 @@
 #VAULT_USERROLE=$2
 #SPRING_PROFILES_ACTIVE=$3
 
+VAULT_HOST=https://$VAULT_HOST
 echo VAULT_HOST = $VAULT_HOST
 echo VAULT_USERROLE = $VAULT_USERROLE
 echo SPRING_PROFILES_ACTIVE = $SPRING_PROFILES_ACTIVE
@@ -16,7 +17,7 @@ cat <<EOF > payload.json
 {"role": "$VAULT_USERROLE", "jwt": "$JWT"}
 EOF
 
-curl -s $VAULT_HOST/v1/auth/kubernetes/login \
+curl -v $VAULT_HOST/v1/auth/kubernetes/login \
 -H "Accept: application/json" \
 -H "Content-Type:application/json" \
 --data  @payload.json | jq . > tokendata.json
@@ -25,7 +26,7 @@ CLIENT_TOKEN=`cat tokendata.json | jq -r .auth.client_token`
 
 echo CLIENT_TOKEN = $CLIENT_TOKEN
 
-curl -s \
+curl -v \
     --header "X-Vault-Token: $CLIENT_TOKEN" \
     -H "Accept: application/json" \
     --request GET \
