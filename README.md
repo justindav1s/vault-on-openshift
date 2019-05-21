@@ -88,14 +88,24 @@ Scripts in the [vault_setup](vault_setup) folder set up Hashicorp Vault inside a
       * Enable and configure Vault to use Kubernetes as it's client identity store. This is useful because each new client kubernetes namespace gets its own default SA capable of authenticating with Kubernetes and thus also with an appropriately configured Vault. Each namapace/project can use its default SA to obtain secrets.
       * Obtain the Root Token
 
-   * [admin/admin_user.sh]([admin/admin_user.sh])
+   * [admin/admin-policy.sh]([admin/admin-policy.sh])
       * sets up a permissive admin policy, that allows the generation a non-root token (using the root token for anything is bad practice)
 
-   * [ola-admin/ola-admin.sh](ola-admin/admin-user.sh)
-      * uses the admin token generated above to set up a much less permissive policy that allows for secrets management anywhere in the ola mount.
+   * [ola-admin/admin-policy.sh](ola-admin/admin-policy.sh)
+      * use the admin token generated above to set up a much less permissive policy that allows for secrets management anywhere in the /ola mount.
 
-   * [ola-dev-admin/admin_user.sh](ola-dev-admin/admin-user.sh)
-      * uses the admin token generated above to set up a much less permissive policy that allows for secrets management anywhere in the ola/<app>/dev mount.
+   * [ola-admin/setup_ola_vault.sh](ola-admin/setup_ola_vault.sh)
+      * use the admin token generated above to set up a vault secrets engine (KV v2) at the /ola path, matching the policy defined above.
+
+   * [ola-dev-admin/admin-policy.sh](ola-dev-admin/admin-policy.sh)
+      * use the admin token generated above to set up a much less permissive policy that allows for secrets management anywhere in the /ola/<app>/dev mount.
+
+   * [ola-dev-admin/setup_ola_dev_vault.sh](ola-dev-admin/setup_ola_dev_vault.sh)
+      * create kubernetes ola-dev namespace if it doesn't already exist
+      * use the admin token generated above to set up a much, much less permissive policy that allows for secrets management anywhere in the /ola/<app>/dev mount.
+      * test the policy works by writing, updating and reading secrets.
+      * attach policy to a specific kubernetes service account and namespace (default & ola-dev)
+      * test that token generated via kubernetes can read secrets
 
    * [setup_app_vault_space.sh](vault_setup/setup_app_vault_space.sh)
      * With the Root Token :
