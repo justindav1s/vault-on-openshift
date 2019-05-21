@@ -45,16 +45,16 @@ objects:
         - name: script-vault-adapter
           image: docker-registry.default.svc:5000/ola-dev/script-vault-adapter:latest
           env:
-          - name: "VAULT_HOST"
-            value: ${VAULT_HOST}
-          - name: "VAULT_PORT"
-            value: ${VAULT_PORT}
           - name: "APP_NAME"
             value: ${APP_NAME}
-          - name: "VAULT_USERROLE"
-            value: ${VAULT_USERROLE}
+          - name: "APP_DOMAIN"
+            value: ${APP_DOMAIN}
           - name: "SPRING_PROFILES_ACTIVE"
             value: ${SPRING_PROFILES_ACTIVE}
+          - name: "VAULT_HOST"
+            value: ${VAULT_HOST}
+          - name: "VAULT_USERROLE"
+            value: ${VAULT_USERROLE}
           volumeMounts:
           - name: secret-volume
             mountPath: /tmp
@@ -69,6 +69,8 @@ objects:
             env:
             - name: "APP_NAME"
               value: ${APP_NAME}
+            - name: "APP_DOMAIN"
+              value: ${APP_DOMAIN}
             - name: "VAULT_USERROLE"
               value: ${VAULT_USERROLE}
             - name: "SPRING_PROFILES_ACTIVE"
@@ -116,8 +118,4 @@ parameters:
 - description: Vault Host
   name: VAULT_HOST
   required: true
-  value: "vault-vault.apps.ocp.datr.eu"
-- description: Vault Port
-  name: VAULT_PORT
-  required: true
-  value: "443"
+  value: "https://vault-vault.apps.ocp.datr.eu"

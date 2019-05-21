@@ -38,8 +38,7 @@ oc new-app -f ../spring-app/spring-app-vault-direct-script-init-container-templa
     -p SPRING_PROFILES_ACTIVE=${ENV} \
     -p VAULT_USERROLE=${APPDOMAIN}-${ENV}-admin \
     -p IMAGE_NAME=spring-app \
-    -p VAULT_HOST=vault-vault.apps.ocp.datr.eu \
-    -p VAULT_PORT=443
+    -p VAULT_HOST=https://vault-vault.apps.ocp.datr.eu
 
 oc expose svc spring-app
 
