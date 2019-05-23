@@ -78,4 +78,13 @@ public class VaultDemoClientApplication {
 	public String getSecret() {
 		return dbpassword+", "+brokerpassword;
 	}
+
+	@RequestMapping(value = "/person/list", method = RequestMethod.GET)
+	public Page<Person> listPerson() {
+		Pageable firstPageWithTenElements = PageRequest.of(0, 10);
+
+		Page<Person> persons = personRepository.findAll(firstPageWithTenElements);
+
+		return persons;
+	}
 }
