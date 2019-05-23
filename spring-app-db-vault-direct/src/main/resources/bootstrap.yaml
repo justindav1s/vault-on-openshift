@@ -1,0 +1,30 @@
+spring:
+    application:
+    name: spring-vault-demo
+    cloud:
+        vault:
+        host: ${VAULT_HOST}
+        port: ${VAULT_PORT}
+        scheme: https
+        authentication: KUBERNETES
+        kubernetes:
+            role: ${VAULT_USERROLE}
+            service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
+        config:
+            order: 10
+        kv:
+            enabled: true
+            backend: ${APP_DOMAIN}
+            profile-separator: '/'
+            default-context: ${spring.application.name}
+            application-name: ${spring.application.name}
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: v-token-ola-dev--qNHqK0TnqEL7RfU7y81w-1558591681
+        password: A1a-eaW6g7VWhNkoeeTd
+
+logging:
+    level:
+        org.springframework: info
+        org.springframework.vault: error
