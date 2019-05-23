@@ -21,6 +21,8 @@ objects:
   kind: DeploymentConfig
   metadata:
     name: ${APP_NAME}
+    labels:
+      app: ${APP_NAME}
   spec:
     triggers:
       -

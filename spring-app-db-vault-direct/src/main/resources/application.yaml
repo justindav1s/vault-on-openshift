@@ -36,5 +36,5 @@ broker:
 logging:
   level:
     org.springframework: info
-    org.springframework.vault: error
+    org.springframework.vault: info
 

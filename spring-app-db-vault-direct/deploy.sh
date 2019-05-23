@@ -1,14 +1,10 @@
 #!/usr/bin/env bash
 
-PROJECT=vrm-prod
-APPDOMAIN=vrm
+PROJECT=ola-dev
+APPDOMAIN=ola
 APPNAME=spring-vault-demo
 
 oc project $PROJECT
-
-oc new-app postgresql -e POSTGRESQL_ADMIN_PASSWORD=password
-
-
 
 oc new-app -f spring-vault-direct-template.yaml \
     -p APP_NAME=${APPNAME} \
