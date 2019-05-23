@@ -2,9 +2,15 @@ package org.jnd.microservices.vault;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jnd.microservices.vault.model.Person;
+import org.jnd.microservices.vault.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,10 +36,29 @@ public class VaultDemoClientApplication {
 	@Value("${broker.password}")
 	String brokerpassword;
 
+	@Value("${spring.datasource.username:default}")
+	String demouser;
+	@Value("${spring.datasource.password:default}")
+	String demopassword;
+
+	@Autowired
+	PersonRepository personRepository;
+
 	@PostConstruct
 	private void postConstruct() {
 		log.info("*****************My db.password is: " + dbpassword);
 		log.info("*****************My broker.password is: " + brokerpassword);
+		log.info("*****************My demouser is: " + demouser);
+		log.info("*****************My demopassword is: " + demopassword);
+
+		Pageable firstPageWithTenElements = PageRequest.of(0, 10);
+
+		Page<Person> persons = personRepository.findAll(firstPageWithTenElements);
+		log.info("*****************My persons is: " + persons.toString());
+
+		for (Person p : persons)	{
+			log.info("*****************My persons is: " + p.getFirstname());
+		}
 
 		Properties myProps = new Properties();
 		myProps.putIfAbsent("password", dbpassword);

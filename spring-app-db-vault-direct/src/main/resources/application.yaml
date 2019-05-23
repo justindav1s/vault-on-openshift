@@ -1,0 +1,40 @@
+spring:
+  profiles: laptop
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5000/postgres
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+---
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://postgresql:5432/postgres
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+---
+demo:
+  db:
+    username: default
+    password: default
+db:
+  password: default
+broker:
+  password: default
+
+logging:
+  level:
+    org.springframework: info
+    org.springframework.vault: error
+

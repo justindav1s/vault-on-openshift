@@ -12,7 +12,7 @@ oc new-app postgresql -e POSTGRESQL_ADMIN_PASSWORD=password
 
 oc rollout status dc/postgresql -w
 
-oc expose dc/postgresql --type=LoadBalancer --name=postgres-lb
+sleep 2
 
 export POD=$(oc get pod -l app=postgresql | grep -m1 postgresql | awk '{print $1}')
 
