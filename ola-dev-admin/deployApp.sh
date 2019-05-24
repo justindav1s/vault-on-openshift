@@ -33,5 +33,3 @@ oc new-app -f ../spring-app-vault-direct/spring-vault-direct-template.yaml \
     -p VAULT_HOST=vault-vault.apps.ocp.datr.eu \
     -p VAULT_PORT=443
 
-oc expose svc spring-vault-demo
-

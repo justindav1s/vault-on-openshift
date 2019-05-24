@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>spring-app-vault-direct</name>
+	<name>spring-app-db-vault-direct</name>
 	<description>A spring boot app get secrets from vault and leverages DB password rotation</description>
 
 	<parent>

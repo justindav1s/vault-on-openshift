@@ -9,7 +9,7 @@ oc project $PROJECT
 oc delete bc spring-app-vault-direct
 
 oc new-build \
-    registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift~https://github.com/justindav1s/kube-vault-adapter \
+    registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift~. \
     --context-dir=spring-app-vault-direct \
     --name spring-app-vault-direct
 

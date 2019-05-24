@@ -2,10 +2,6 @@
 
 #set -x
 
-USER=admin
-PASSWORD=admin
-POLICY=admin
-
 export VAULT_ADDR=https://$(oc get route -n vault | grep -m1 vault | awk '{print $2}')
 
 export VAULT_TOKEN=$(cat ../admin/admin_token.txt| head -1)
