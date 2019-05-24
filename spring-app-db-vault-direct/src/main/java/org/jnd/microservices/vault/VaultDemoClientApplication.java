@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.UUID;
 
 @SpringBootApplication
 @RestController
@@ -50,6 +51,9 @@ public class VaultDemoClientApplication {
 		log.info("*****************My broker.password is: " + brokerpassword);
 		log.info("*****************My demouser is: " + demouser);
 		log.info("*****************My demopassword is: " + demopassword);
+
+		String uuid = UUID.randomUUID().toString();
+		log.info("*****************My UUID is: " + uuid + " length : "+uuid.length());
 
 		Pageable firstPageWithTenElements = PageRequest.of(0, 10);
 

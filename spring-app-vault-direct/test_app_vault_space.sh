@@ -1,20 +1,29 @@
 #!/usr/bin/env bash
 
+#set -x
+
 APPDOMAIN=ola
 APPNAME=spring-vault-demo
 ENV=dev
 PROJECT=${APPDOMAIN}-${ENV}
 
-VAULT_ADDR=https://`oc get route -n vault | grep -m1 vault | awk '{print $2}'`
+oc project ${APPDOMAIN}-${ENV}
+
+export VAULT_ADDR=https://`oc get route -n vault | grep -m1 vault | awk '{print $2}'`
 echo VAULT_ADDR $VAULT_ADDR
-APP_TOKEN=`cat ../${PROJECT}-admin/${APPDOMAIN}-${ENV}-admin_token.txt| head -1`
-export VAULT_TOKEN=$APP_TOKEN
 
-vault login -address=$VAULT_ADDR $APP_TOKEN
+default_account_token=$(oc serviceaccounts get-token default -n ${PROJECT})
 
-echo APP_TOKEN=$APP_TOKEN
+AUTH_RESPONSE=$(curl -s \
+    --request POST \
+    --data "{\"jwt\": \"${default_account_token}\", \"role\": \"${APPDOMAIN}-${ENV}-admin\"}" \
+    ${VAULT_ADDR}/v1/auth/kubernetes/login)
 
-vault kv get -tls-skip-verify -address=$VAULT_ADDR  ${APPDOMAIN}/${APPNAME}/dev
+export VAULT_TOKEN=$(echo $AUTH_RESPONSE | jq -r .auth.client_token)
+
+echo VAULT_TOKEN=$VAULT_TOKEN
+
+vault kv get -tls-skip-verify ${APPDOMAIN}/${APPNAME}/dev
 
 curl \
     --header "X-Vault-Token: $VAULT_TOKEN" \
