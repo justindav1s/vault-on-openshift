@@ -1,20 +1,43 @@
-spring.application.name: spring-vault-demo
-spring.cloud.vault:
-    host: ${VAULT_HOST}
-    port: ${VAULT_PORT}
-    scheme: https
-    authentication: KUBERNETES
-    kubernetes:
+spring:
+  application:
+    name: spring-vault-demo
+
+---
+spring:
+  profiles: laptop
+  cloud:
+    vault:
+      host: vault-vault.apps.ocp.datr.eu
+      port: 443
+      scheme: https
+      authentication: TOKEN
+      token: s.ZELFRG7Elu4SXIi8A09SzbMa
+      config:
+        order: 10
+      kv:
+        enabled: true
+        backend: ola
+        profile-separator: '/'
+        default-context: ${spring.application.name}/dev
+        application-name: ${spring.application.name}
+
+---
+spring:
+  profiles: dev
+  cloud:
+    vault:
+      host: ${VAULT_HOST}
+      port: ${VAULT_PORT}
+      scheme: https
+      authentication: KUBERNETES
+      kubernetes:
         role: ${VAULT_USERROLE}
         service-account-token-file: /var/run/secrets/kubernetes.io/serviceaccount/token
-    config:
+      config:
         order: 10
-    kv:
+      kv:
         enabled: true
-        backend: ${APP_DOMAIN}
+        backend: ola
         profile-separator: '/'
         default-context: ${spring.application.name}
         application-name: ${spring.application.name}
-
-logging.level.org.springframework: info
-logging.level.org.springframework.vault: error

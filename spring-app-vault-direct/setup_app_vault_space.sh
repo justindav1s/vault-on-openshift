@@ -2,9 +2,10 @@
 
 set -x
 
-PROJECT=vrm-prod
-APPDOMAIN=vrm
+APPDOMAIN=ola
 APPNAME=spring-vault-demo
+ENV=dev
+PROJECT=${APPDOMAIN}-${ENV}
 
 oc login https://ocp.datr.eu:8443 -u justin
 
@@ -44,8 +45,8 @@ vault write \
     bound_service_account_namespaces=${PROJECT} \
     policies=${APPDOMAIN}-${APPNAME} ttl=2h
 
-vault kv put -tls-skip-verify ${APPDOMAIN}/${APPNAME}/dev broker.password=pwd_for_broker db.password=pwd_for_db
-vault kv patch -tls-skip-verify ${APPDOMAIN}/${APPNAME}/dev broker.url=tcp://amq:61616
+vault kv put -tls-skip-verify ${APPDOMAIN}/${APPNAME}/${ENV} broker.password=pwd_for_broker db.password=pwd_for_db
+vault kv patch -tls-skip-verify ${APPDOMAIN}/${APPNAME}/${ENV} broker.url=tcp://amq:61616
 
 default_account_token=$(oc serviceaccounts get-token default -n ${PROJECT})
 

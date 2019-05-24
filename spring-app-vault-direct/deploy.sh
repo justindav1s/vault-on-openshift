@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-PROJECT=vrm-prod
-APPDOMAIN=vrm
+PROJECT=ola-dev
+APPDOMAIN=ola
 APPNAME=spring-vault-demo
 
 oc project $PROJECT
+
+oc delete all -l app=${APPNAME}
 
 oc new-app -f spring-vault-direct-template.yaml \
     -p APP_NAME=${APPNAME} \

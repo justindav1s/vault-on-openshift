@@ -1,0 +1,23 @@
+spring:
+  profiles: laptop
+
+---
+spring:
+  profiles: dev
+
+
+---
+demo:
+  db:
+    username: default
+    password: default
+db:
+  password: default
+broker:
+  password: default
+
+logging:
+  level:
+    org.springframework: info
+    org.springframework.vault: info
+

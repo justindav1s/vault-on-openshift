@@ -6,8 +6,6 @@ APPNAME=spring-app-db-vault-demo
 
 oc project $PROJECT
 
-oc delete all -l app=spring-vault-demo
-oc delete all -l app=spring-db-vault-demo
 oc delete all -l app=${APPNAME}
 
 oc new-app -f spring-vault-direct-template.yaml \
